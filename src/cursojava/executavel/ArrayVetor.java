@@ -22,9 +22,51 @@ public class ArrayVetor {
         /*relaciona as ddiciplinas*/
         aluno.getDisciplina().add(disciplina);
 
-        System.out.println("nome do aluno " + aluno.getNome() + "inscito no curso: " + aluno.getNomeEscola());
+        Aluno[] arrayAlunos = new Aluno[1];
 
-        for(Disciplina disciplina1 : aluno.getDisciplina()) {
+        arrayAlunos[0] = aluno;
+
+        for (int pos = 0; pos <arrayAlunos.length; pos++) {
+
+            System.out.println("nome do aluno é " + arrayAlunos[pos].getNome());
+
+            for (Disciplina d: arrayAlunos[pos].getDisciplina()){
+                System.out.println("nome da disciplina é : " + d.getDisciplina());
+            }
+            for(int posnota = 0; posnota < disciplina.getNota().length; posnota++) {
+                System.out.println("a nota numero " + posnota + "é igual " + disciplina.getNota()[posnota]);
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        System.out.println("nome do aluno " + aluno.getNome() + "inscito no curso: " + aluno.getNomeEscola());
+
+        /*for(Disciplina disciplina1 : aluno.getDisciplina()) {
             System.out.println("disciplina do aluno ");
             System.out.println(" disciplina : " + disciplina1.getDisciplina());
             System.out.println("as nostas das disciplaina sao");
@@ -34,10 +76,10 @@ public class ArrayVetor {
                 System.out.println("nota " + pos + "é igual = "  + disciplina1.getNota()[pos]);
 
                 if (pos == 0 ) {
-                    notaMax = disciplina1.getNota()[pos]; /*notamax recebe a nota do objeto disciplina1*/
+                    notaMax = disciplina1.getNota()[pos]; *//*notamax recebe a nota do objeto disciplina1*//*
                 } else {
-                    if (disciplina1.getNota()[pos] > notaMax) { /*se a nota do objeto for maior que a nota max a nota max vai receber ela*/
-                        notaMax = disciplina1.getNota()[pos];  /*senao continua o laco ate varrer o array*/
+                    if (disciplina1.getNota()[pos] > notaMax) { *//*se a nota do objeto for maior que a nota max a nota max vai receber ela*//*
+                        notaMax = disciplina1.getNota()[pos];  *//*senao continua o laco ate varrer o array*//*
                     }
                 }
             }
@@ -51,10 +93,10 @@ public class ArrayVetor {
                 } else {
                     if (disciplina1.getNota()[pos] < notaMax) {
                         notaMax = disciplina1.getNota()[pos];
-                    }
+                    }*/
                 }
             }
-        }
+
 
 
 
@@ -88,5 +130,5 @@ public class ArrayVetor {
         for (int pos = 0; pos < notas.length; pos ++) {
             System.out.println("Nota " + (pos+1)+ " é = " + notas[pos]);
         }*/
-    }
-}
+
+
