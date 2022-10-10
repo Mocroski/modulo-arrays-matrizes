@@ -3,65 +3,72 @@ package cursojava.thread;
 import javax.swing.*;
 
 public class AulaThread {
-    public static void main(String[] args) throws  InterruptedException{
-
-        /*thread processsando em paralelo*/
-        new Thread() {
-
-            @Override
-            public void run() {/*executa o qe queremos*/
-
-                /*codigo da rotina*/
-                /*codigo que executa em paralelo*/
-                for(int pos =0; pos < 10; pos ++) {
-
-                    /*quero executar essa rotina com tempo de para ou com tempo determinado*/
-                    System.out.println("executando alguma rotina:");
-
-                    try {
-                        Thread.sleep(1000);/*coloca tempo na execução, precisa de uma exeption*/
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                }
-                System.out.println("chegou ao fim do teste de thread");
-                /*fim do codigo em paralelo*/
-            }
-        }.start();/*start liga a thread que ifca processando paralelamente*/
-
-
-                    /*DIVISAO DAS THREADS*/
+    public static void main(String[] args) throws InterruptedException {
 
 
         /*thread processsando em paralelo*/
-        new Thread() {
-
-            @Override
-            public void run() {/*executa o qe queremos*/
-
-                /*codigo da rotina*/
-                /*codigo que executa em paralelo*/
-                for(int pos =0; pos < 10; pos ++) {
-
-                    /*quero executar essa rotina com tempo de para ou com tempo determinado*/
-                    System.out.println("executando alguma rotina 2");
-
-                    try {
-                        Thread.sleep(2000);/*coloca tempo na execução, precisa de uma exeption*/
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                }
-                System.out.println("chegou ao fim do teste de thread");
-                /*fim do codigo em paralelo*/
-            }
-        }.start();/*start liga a thread que ifca processando paralelamente*/
+        Thread threadNota = new Thread(thread1);
+        threadNota.start();
 
 
-        /*fluxo do sistema, cadastro de venda, emissao de nota fiscal etc*/
-        JOptionPane.showMessageDialog(null,"sistema continua executando para o usuario");
+        /*thread processsando em paralelo*/
+        Thread threadEmail = new Thread(thread2);
+        threadEmail.start();
+
+        JOptionPane.showMessageDialog(null, "sistema continua executando para o usuario");
 
     }
-}
+
+    private static Runnable thread1 = new Runnable() {
+        @Override
+        public void run() {
+
+            /*codigo da rotina*/
+            /*codigo que executa em paralelo*/
+            for (int pos = 0; pos < 10; pos++) {
+
+                /*quero executar essa rotina com tempo de para ou com tempo determinado*/
+                System.out.println("executando alguma rotina de nota fiscal");
+
+                try {
+                    Thread.sleep(1000);/*coloca tempo na execução, precisa de uma exeption*/
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+            System.out.println("chegou ao fim do teste de thread de nota fiscal");
+            /*fim do codigo em paralelo*/
+        }
+
+    };
+
+    private static Runnable thread2 = new Runnable() {
+        @Override
+        public void run() {
+
+            /*codigo da rotina*/
+            /*codigo que executa em paralelo*/
+            for (int pos = 0; pos < 10; pos++) {
+
+                /*quero executar essa rotina com tempo de para ou com tempo determinado*/
+                System.out.println("executando alguma rotina de email");
+
+                try {
+                    Thread.sleep(1000);/*coloca tempo na execução, precisa de uma exeption*/
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+            System.out.println("chegou ao fim do teste de thread de email");
+            /*fim do codigo em paralelo*/
+        }
+
+    };
+};
+
+
+
+
+
