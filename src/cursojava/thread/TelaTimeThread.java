@@ -2,6 +2,10 @@ package cursojava.thread;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class TelaTimeThread extends JDialog {
 
@@ -15,6 +19,39 @@ public class TelaTimeThread extends JDialog {
 
     private JButton jButton = new JButton("START");
     private JButton jButton2 = new JButton("STOP");
+
+    private Runnable thread1 = new Runnable() {
+        @Override
+        public void run() {
+            while (true) {
+                mostraTempo.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm.ss").format(Calendar.getInstance().getTime()));
+
+                try {
+                    Thread.sleep(1000); /*cadenciar o while pra nao travar o PC*/
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    };
+
+    private Runnable thread2 = new Runnable() {
+        @Override
+        public void run() {
+            while (true) {
+                mostraTempo.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm.ss").format(Calendar.getInstance().getTime()));
+
+                try {
+                    Thread.sleep(1000); /*cadenciar o while pra nao travar o PC*/
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    };
+
+    private Thread thread1Time;
+    private Thread thread2Time;
 
     public TelaTimeThread (){/*executa o que tiver dentro no momento da execucao*/
 
@@ -66,6 +103,23 @@ public class TelaTimeThread extends JDialog {
         gridBagConstraints.gridx ++;
         jPanel.add(jButton2, gridBagConstraints);
 
+
+        jButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {/*executa o evento de click no button*/
+
+                thread1Time = new Thread(thread1);
+                thread1Time.start();
+            }
+        });
+
+        jButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                thread1Time.stop();
+            }
+        });
 
         add(jPanel, BorderLayout.WEST);
         setVisible(true);/*ultimo a ser executado(torna a tela vsisivel ao user*/
