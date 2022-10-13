@@ -39,10 +39,10 @@ public class TelaTimeThread extends JDialog {
         @Override
         public void run() {
             while (true) {
-                mostraTempo.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm.ss").format(Calendar.getInstance().getTime()));
+                mostraTempo2.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(Calendar.getInstance().getTime()));
 
                 try {
-                    Thread.sleep(1000); /*cadenciar o while pra nao travar o PC*/
+                    Thread.sleep(3000); /*cadenciar o while pra nao travar o PC*/
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -110,6 +110,12 @@ public class TelaTimeThread extends JDialog {
 
                 thread1Time = new Thread(thread1);
                 thread1Time.start();
+
+                thread2Time = new Thread(thread2);
+                thread2Time.start();
+
+                jButton.setEnabled(false);
+                jButton2.setEnabled(true);
             }
         });
 
@@ -118,8 +124,14 @@ public class TelaTimeThread extends JDialog {
             public void actionPerformed(ActionEvent e) {
 
                 thread1Time.stop();
+                thread2Time.stop();
+
+                jButton.setEnabled(true);
+                jButton2.setEnabled(false);
             }
         });
+
+        jButton2.setEnabled(false);
 
         add(jPanel, BorderLayout.WEST);
         setVisible(true);/*ultimo a ser executado(torna a tela vsisivel ao user*/
